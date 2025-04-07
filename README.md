@@ -14,4 +14,4 @@ Example template and instructions for modding Schedule I IL2CPP version
       - NOTE: Now if you inspect that that Assembly-CSharp.dll file with dnSpy, you will find that the namespace for ScheduleOne has become Il2CppScheduleOne
       - NOTE: You will need to use that specific namespace when referring to the game namespace related things by: using Il2CppScheduleOne.Player;
 
-- After these steps are done, you are ready to code your own logics. See the Template ExampleMod.cs file for the basic requirements for Harmony and MelonLoader.
+- After these steps are done, you are ready to code your own logics. See the Template Class1.cs file for the basic requirements for Harmony and MelonLoader.
