@@ -2,7 +2,7 @@
 Example template and instructions for modding Schedule I IL2CPP version
 
 ## Requirements
-- The game requires your mod to target the net6 framework, this is defined in the ExampleMod.csproj file "<TargetFramework>net6</TargetFramework>" and net6 must be installed before building the library. Visual Studio will prompt you to install it if not present.
+- The game requires your mod to target the net6 framework, this is defined in the ExampleMod.csproj file TargetFramework property and net6 must be installed before building the library. Visual Studio will prompt you to install it if not present.
 - Then install the 2 required packages, Visual Studio toolbar -> Project -> Manage NuGet Packages
   - Search for LavaGang.MelonLoader and install it
   - Search for Lib.Harmony and install it
