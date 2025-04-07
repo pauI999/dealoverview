@@ -10,7 +10,7 @@ Example template and instructions for modding Schedule I IL2CPP version
 - Now you must additionally have MelonLoader installed for the game, if it is not installed do it now.
 - Start your game once and let MelonLoader build the il2cpp assemblies. After this is done the game will start and then close the game.
   - Then you must navigate to the following directory: C:\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies
-  - From here you will need two files: Assembly-CSharp.dll and UnityEngine.CoreModule.dll
+  - From here you will need two files: Assembly-CSharp.dll and UnityEngine.CoreModule.dll, move these two files into the libs folder. (Also specified in the .csproj file)
       - NOTE: Now if you inspect that that Assembly-CSharp.dll file with dnSpy, you will find that the namespace for ScheduleOne has become Il2CppScheduleOne
       - NOTE: You will need to use that specific namespace when referring to the game namespace related things by: using Il2CppScheduleOne.Player;
 
