@@ -19,6 +19,6 @@ Mod for Schedule I IL2CPP version
 ## Feature
 - Deal Overview Phone Contact
 - List active deals
-![deal overview](https://i.imgur.com/5SMYUta.png)
+- ![deal overview](https://i.imgur.com/5SMYUta.png)
 
 ## Took inspiration on this mod: https://www.nexusmods.com/schedule1/mods/162
