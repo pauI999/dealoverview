@@ -1,5 +1,5 @@
-# schedule-il2cpp-example
-Example template and instructions for modding Schedule I IL2CPP version
+# DealOverviewMod
+Mod for Schedule I IL2CPP version
 
 ## Requirements
 - The game requires your mod to target the net6 framework, this is defined in the ExampleMod.csproj file TargetFramework property and net6 must be installed before building the library. Visual Studio will prompt you to install it if not present.
@@ -15,3 +15,10 @@ Example template and instructions for modding Schedule I IL2CPP version
       - NOTE: You will need to use that specific namespace when referring to the game namespace related things by: using Il2CppScheduleOne.Player;
 
 - After these steps are done, you are ready to code your own logics. See the Template MainMod.cs file for the basic requirements for Harmony and MelonLoader.
+
+## Feature
+- Deal Overview Phone Contact
+- List active deals
+![deal overview](https://imgur.com/5SMYUta)
+
+## Took inspiration on this mod: https://www.nexusmods.com/schedule1/mods/162
