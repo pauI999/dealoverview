@@ -1,8 +1,8 @@
-﻿using Il2CppScheduleOne.Messaging;
+﻿using System.Collections;
+using Il2CppScheduleOne.Messaging;
 using Il2CppScheduleOne.NPCs;
 using Il2CppScheduleOne.UI.Phone.Messages;
 using MelonLoader;
-using System.Collections;
 using UnityEngine;
 
 namespace DealOverviewMod

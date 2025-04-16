@@ -84,7 +84,7 @@ namespace DealOverviewMod
         private void SumUpDeals()
         {
             List<DialogueResponse> list = new List<DialogueResponse>();
-            var productTotals = new Dictionary<string, (uint bricks, uint jars, uint baggies)>();
+            var productTotals = new Dictionary<string, (uint bricks, uint jars, uint baggies, uint total)>();
             Il2CppSystem.Collections.Generic.List<Customer> customers = Customer.UnlockedCustomers;
             foreach (Customer c in customers)
             {
@@ -100,24 +100,25 @@ namespace DealOverviewMod
                     uint jars = remainder / 5;
                     uint baggies = remainder % 5;
                     if (!productTotals.ContainsKey(productId))
-                        productTotals[productId] = (0, 0, 0);
+                        productTotals[productId] = (0, 0, 0, 0);
                     var current = productTotals[productId];
                     productTotals[productId] = (
                         current.bricks + bricks,
                         current.jars + jars,
-                        current.baggies + baggies
+                        current.baggies + baggies,
+                        current.total + quantity
                     );
                 }
             }
             foreach (var kvp in productTotals)
             {
                 string productId = kvp.Key;
-                var (bricks, jars, baggies) = kvp.Value;
+                var (bricks, jars, baggies, total) = kvp.Value;
 
-                string message = $"{productId}:\n" +
-                                 (bricks > 0 ? $"{bricks} bricks\n" : "") +
-                                 (jars > 0 ? $"{jars} jars\n" : "") +
-                                 (baggies > 0 ? $"{baggies} baggies" : "");
+                string message = $"{productId} ({total}):" +
+                                 (bricks > 0 ? $"\n {bricks} bricks" : "") +
+                                 (jars > 0 ? $"\n {jars} jars" : "") +
+                                 (baggies > 0 ? $"\n {baggies} baggies" : "");
 
                 _dialogue.SendNPCMessage(message);
             }
