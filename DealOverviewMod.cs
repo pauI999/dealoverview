@@ -10,7 +10,7 @@ namespace DealOverviewMod
 {
     public static class BuildInfo
     {
-        public const string Name = "DealOverviewMod";
+        public const string Name = "DealOverview";
         public const string Description = "";
         public const string Author = "pauI999";
         public const string Company = null;
@@ -24,10 +24,10 @@ namespace DealOverviewMod
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            MelonLogger.Msg($"Scene loaded: {sceneName}");
+            MelonLogger.Msg($"[DealOverview] Scene loaded: {sceneName}");
             if (sceneName == "Main")
             {
-                MelonLogger.Msg("Starting 3s delay!");
+                MelonLogger.Msg("[DealOverview] Starting 3s delay!");
                 MelonCoroutines.Start(InitAfterDelay());
             }
         }
