@@ -1,33 +1,42 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-        <TargetFramework>net6</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>
-	    <LangVersion>10.0</LangVersion>
+		<TargetFramework>net6</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<LangVersion>10.0</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-        <PackageReference Include="LavaGang.MelonLoader" Version="0.7.0" />
-        <PackageReference Include="Lib.Harmony" Version="2.3.5" />
+		<PackageReference Include="LavaGang.MelonLoader" Version="0.7.0" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.5" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">
-			<HintPath>libs\Assembly-CSharp.dll</HintPath>
+			<HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
 		</Reference>
 		<Reference Include="Il2CppFishNet.Runtime">
-		  <HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2CppFishNet.Runtime.dll</HintPath>
+			<HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2CppFishNet.Runtime.dll</HintPath>
 		</Reference>
 		<Reference Include="Il2CppInterop.Runtime">
-		  <HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+			<HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
 		</Reference>
 		<Reference Include="Il2Cppmscorlib">
-		  <HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+			<HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\net6\MelonLoader.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
-			<HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+			<HintPath>E:\SteamLibrary\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
 		</Reference>
 	</ItemGroup>
-
+	<ItemGroup>
+		<BuildArtifacts Include="$(TargetPath)" />
+		<PluginOutput Include="E:\SteamLibrary\steamapps\common\Schedule I\Mods" />
+	</ItemGroup>
+	<Target Name="CopyToModFolder" AfterTargets="Build">
+		<Copy SourceFiles="@(BuildArtifacts)" DestinationFolder="@(PluginOutput)" SkipUnchangedFiles="true" />
+	</Target>
 </Project>
