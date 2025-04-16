@@ -89,25 +89,30 @@ namespace DealOverviewMod
             foreach (Customer c in customers)
             {
                 if (c.CurrentContract?.ProductList?.entries != null &&
-                c.CurrentContract.ProductList.entries.Count != 0 && c.CurrentContract.Dealer == null)
+                    c.CurrentContract.ProductList.entries.Count > 0 &&
+                    c.CurrentContract.Dealer == null)
                 {
-                    ProductList.Entry targetProduct = c.CurrentContract.ProductList.entries[0];
-                    string productId = targetProduct.ProductID;
-                    uint quantity = (uint)targetProduct.Quantity;
+                    foreach (var entry in c.CurrentContract.ProductList.entries)
+                    {
+                        string productId = entry.ProductID;
+                        uint quantity = (uint)entry.Quantity;
 
-                    uint bricks = quantity / 20;
-                    uint remainder = quantity % 20;
-                    uint jars = remainder / 5;
-                    uint baggies = remainder % 5;
-                    if (!productTotals.ContainsKey(productId))
-                        productTotals[productId] = (0, 0, 0, 0);
-                    var current = productTotals[productId];
-                    productTotals[productId] = (
-                        current.bricks + bricks,
-                        current.jars + jars,
-                        current.baggies + baggies,
-                        current.total + quantity
-                    );
+                        uint bricks = quantity / 20;
+                        uint remainder = quantity % 20;
+                        uint jars = remainder / 5;
+                        uint baggies = remainder % 5;
+
+                        if (!productTotals.ContainsKey(productId))
+                            productTotals[productId] = (0, 0, 0, 0);
+
+                        var current = productTotals[productId];
+                        productTotals[productId] = (
+                            current.bricks + bricks,
+                            current.jars + jars,
+                            current.baggies + baggies,
+                            current.total + quantity
+                        );
+                    }
                 }
             }
             foreach (var kvp in productTotals)
@@ -115,22 +120,36 @@ namespace DealOverviewMod
                 string productId = kvp.Key;
                 var (bricks, jars, baggies, total) = kvp.Value;
 
-                string message = $"{productId} ({total}):" +
-                                 (bricks > 0 ? $"\n {bricks} bricks" : "") +
-                                 (jars > 0 ? $"\n {jars} jars" : "") +
-                                 (baggies > 0 ? $"\n {baggies} baggies" : "");
-
+                string message = FormatDealMessage(productId, total, bricks, jars, baggies);
                 _dialogue.SendNPCMessage(message);
             }
             if (productTotals.Count == 0)
             {
                 _dialogue.SendNPCMessage("No active deals at the moment!");
-                return;
             }
             else
             {
                 _dialogue.SendNPCMessage("Click button to list deals!");
             }
+        }
+
+        private static string FormatDealMessage(string productId, uint total, uint bricks, uint jars, uint baggies)
+        {
+            var parts = new List<string>
+            {
+                $"{productId} ({total}):"
+            };
+
+            if (bricks > 0)
+                parts.Add($" {bricks} brick{(bricks == 1 ? "" : "s")}");
+
+            if (jars > 0)
+                parts.Add($" {jars} jar{(jars == 1 ? "" : "s")}");
+
+            if (baggies > 0)
+                parts.Add($" {baggies} baggie{(baggies == 1 ? "" : "s")}");
+
+            return string.Join("\n", parts);
         }
 
         public void Cleanup()
